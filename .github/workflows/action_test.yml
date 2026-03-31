@@ -12,4 +12,19 @@ jobs:
   demo:
     runs-on: ubuntu-latest
     steps:
-      - run: echo '執行成功'
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4.5.0
+        with:
+          python-version: "3.10"
+      - name: Install Python Dependency
+        run: pip3 install requests
+      - name: run cache_web.py
+        run:  python3 cache_web.py
+      - name: Commit Data Back To GitHub Repo  # 將爬到的數據 commit 回 GitHub repo
+        run: |
+          git config --global user.name "yoBadG"
+          git config --global user.email "ryan1233abcc@gmail.com"
+          git add . && git commit -m "daily crawl"
+          git push origin main
