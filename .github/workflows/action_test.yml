@@ -1,6 +1,9 @@
 name: GitHub Actions Demo
 run-name: GitHub Actions Demo
 
+permissions:
+  contents: write
+
 # 觸發此 action 的時機
 on:
   schedule:
@@ -29,4 +32,4 @@ jobs:
           git config --global user.name "yoBadG"
           git config --global user.email "ryan1233abcc@gmail.com"
           git add . && git commit -m "daily crawl"
-          git push origin main
+          git push
